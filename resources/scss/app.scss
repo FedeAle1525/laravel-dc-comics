@@ -1,1 +1,7 @@
 @import '~bootstrap/scss/bootstrap';
+
+// Importo il file con le regole di Reset
+@import './general/reset';
+
+// Importo il file con le regole di stile dell'Header
+@import './partials/header';
