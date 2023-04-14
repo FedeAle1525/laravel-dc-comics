@@ -35,4 +35,10 @@ class ComicController extends Controller
 
         return view('comics.show', compact('comic'));
     }
+
+    // 2 - CRUD ---> Create
+    public function create()
+    {
+        return view('comics.create');
+    }
 }
