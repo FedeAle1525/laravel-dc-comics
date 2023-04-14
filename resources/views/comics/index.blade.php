@@ -17,6 +17,7 @@
           <th>Serie</th>
           <th>Data D'Uscita</th>
           <th>Tipo</th>
+          <th>Show</th>
         </tr>
       </thead>
 
@@ -26,11 +27,17 @@
         <tr>
           <td>{{ $comic['title'] }}</td>
           <td>{{ $comic['description'] }}</td>
-          <td>{{ $comic['thumb'] }}</td>
+          <td>
+            <img src="{{ $comic['thumb'] }}" alt="">
+          </td>
           <td>{{ $comic['price'] }}</td>
           <td>{{ $comic['series'] }}</td>
           <td>{{ $comic['sale_date'] }}</td>
           <td>{{ $comic['type'] }}</td>
+
+          <!-- 1 - CRUD / Read / Show -->
+          <!-- Creo collegamento alla Rotta Dinamica 'Show', passando il Parametro -->
+          <td><a href=" {{ route('comics.show', $comic) }} ">Dettaglio</a></td>
         </tr>
         @endforeach
 
