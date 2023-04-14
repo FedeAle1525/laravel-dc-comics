@@ -20,3 +20,6 @@ Route::get('/', function () {
 
 // 1 - CRUD ---> Read ---> Index
 Route::get('/comics', [ComicController::class, 'index'])->name('comics.index');
+
+// 1 - CRUD ---> Read ---> Show
+Route::get('comics/{comic}', [ComicController::class, 'show'])->name('comics.show');
