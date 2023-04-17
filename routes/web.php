@@ -26,3 +26,6 @@ Route::get('/comics/create', [ComicController::class, 'create'])->name('comics.c
 
 // 1 - CRUD ---> Read ---> Show
 Route::get('/comics/{comic}', [ComicController::class, 'show'])->name('comics.show');
+
+// 2 - CRUD ---> Create ---> Store
+Route::post('/comics', [ComicController::class, 'store'])->name('comics.store');
