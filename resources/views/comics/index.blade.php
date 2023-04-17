@@ -38,6 +38,10 @@
           <!-- 1 - CRUD / Read / Show -->
           <!-- Creo collegamento alla Rotta Dinamica 'Show', passando il Parametro -->
           <td><a href=" {{ route('comics.show', $comic) }} ">Dettaglio</a></td>
+
+          <!-- 3 - CRUD / Update / Edit -->
+          <!-- Pulsante che porta alla Pagina di Edit, passando il Parametro -->
+          <td><a href="{{ route('comics.edit', $comic) }}" class="btn btn-warning">Modifica</a></td>
         </tr>
         @endforeach
 
