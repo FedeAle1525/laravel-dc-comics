@@ -32,3 +32,6 @@ Route::post('/comics', [ComicController::class, 'store'])->name('comics.store');
 
 // 3 - CRUD ---> Update ---> Edit
 Route::get('/comics/{comic}/edit', [ComicController::class, 'edit'])->name('comics.edit');
+
+// 3 - CRUD ---> Update
+Route::post('/comics/{comic}', [ComicController::class, 'update'])->name('comics.update');
