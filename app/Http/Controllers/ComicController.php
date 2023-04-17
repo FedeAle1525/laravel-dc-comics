@@ -67,4 +67,11 @@ class ComicController extends Controller
         // Al posto di ritornare una Vista, si fa un REDIRECT sulla Rotta 'show', ricordandoci che è una Rotta Parametrica quindi bisogna passare l'id riferito alla nuova entità
         return redirect()->route('comics.show', $newComic->id);
     }
+
+    // 3 - CRUD ---> Update ---> Edit
+    // Utilizzo la "Dependency Injection" come per il metodo 'show()', per recuperare i dati da passare al Form Precompilato
+    public function edit(Comic $comic)
+    {
+        return view('comics.edit', compact('comic'));
+    }
 }
