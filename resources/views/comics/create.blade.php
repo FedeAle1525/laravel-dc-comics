@@ -10,7 +10,8 @@
     <h1>Nuovo Comic</h1>
   </div>
   <div class="container">
-    <form action="">
+    <form action="{{ route('comics.store') }}" method="POST">
+      @csrf <!-- Direttiva che genera un Input Nascosto con un Codice associato che riconosce il Form del Sito -->
 
       <!-- I Name degli Input devono coincidere con il nome delle Colonne della Tabella -->
       <div class="mb-3">
@@ -41,7 +42,7 @@
       <div class="mb-3">
         <label class="form-label">Prezzo</label>
         <div class="input-group">
-          <input type="number" class="form-control" name="price">
+          <input type="text" class="form-control" name="price">
           <span class="input-group-text">€</span>
         </div>
       </div>

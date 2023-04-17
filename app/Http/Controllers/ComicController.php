@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Comic;
 use Illuminate\Http\Request;
 
+use function GuzzleHttp\Promise\all;
+
 class ComicController extends Controller
 {
     // 1 - CRUD ---> Read ---> Index
@@ -40,5 +42,29 @@ class ComicController extends Controller
     public function create()
     {
         return view('comics.create');
+    }
+
+    // 2 - CRUD ---> Create ---> Store
+    // La variabile $request gestisce le Richieste dell'Utente tramite Form
+    public function store(Request $request)
+    {
+        // Tramite il metodo "all" di $request, recupero tutti gli input (coppia name/value) creati nel Form in un Array Asociativo
+        $data = $request->all();
+
+        // Creo una nuova Istanza di Comic con i valori delle proprieta' uguali ai dati del Form contenuti in $request
+        $newComic = new Comic();
+
+        $newComic->title = $data['title'];
+        $newComic->description = $data['description'];
+        $newComic->thumb = $data['thumb'];
+        $newComic->price = $data['price'];
+        $newComic->series = $data['series'];
+        $newComic->sale_date = $data['sale_date'];
+        $newComic->type = $data['type'];
+
+        $newComic->save();
+
+        // Al posto di ritornare una Vista, si fa un REDIRECT sulla Rotta 'show', ricordandoci che è una Rotta Parametrica quindi bisogna passare l'id riferito alla nuova entità
+        return redirect()->route('comics.show', $newComic->id);
     }
 }
