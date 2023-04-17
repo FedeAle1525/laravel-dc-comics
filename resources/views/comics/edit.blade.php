@@ -11,8 +11,12 @@
   </div>
 
   <div class="container">
-    <form action="" method="">
+
+    <!-- 3 - CRUD / Update -->
+    <!-- Faccio riferimento alla Rotta dello Update perchè i dati inseriti nel form verrano salvati nel DB tramite questa CRUD -->
+    <form action="{{ route('comics.update', $comic) }}" method="post">
       @csrf <!-- Direttiva che genera un Input Nascosto con un Codice associato che riconosce il Form del Sito -->
+      @method('put') <!-- Direttiva che permette di "trasformare" il metodo 'POST' del Form in un PUT -->
 
       <!-- I Value degli Input devono coincidono con il contenuto delle Colonne della Tabella, recuperati dal DB -->
       <div class="mb-3">

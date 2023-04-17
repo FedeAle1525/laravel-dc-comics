@@ -74,4 +74,25 @@ class ComicController extends Controller
     {
         return view('comics.edit', compact('comic'));
     }
+
+    public function update(Request $request, Comic $comic)
+    {
+
+        // Tramite il metodo "all" di $request, recupero tutti gli input (coppia name/value) del Form Precompilato in un Array Asociativo
+        $data = $request->all();
+
+        // Aggiorno i dati presenti nell'istanza $book (da sovrascrivere nel DB) con quelli presenti in $request (Form Precompilato)
+        $comic->title = $data['title'];
+        $comic->description = $data['description'];
+        $comic->thumb = $data['thumb'];
+        $comic->price = $data['price'];
+        $comic->series = $data['series'];
+        $comic->sale_date = $data['sale_date'];
+        $comic->type = $data['type'];
+
+        $comic->save();
+
+        // Al posto di ritornare una Vista, si fa un REDIRECT sulla Rotta 'show', ricordandoci che è una Rotta Parametrica quindi bisogna passare l'id riferito alla nuova entità
+        return to_route('comics.show', $comic);
+    }
 }
