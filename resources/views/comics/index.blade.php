@@ -25,15 +25,15 @@
 
         @foreach ($comics as $comic)
         <tr>
-          <td>{{ $comic['title'] }}</td>
-          <td>{{ $comic['description'] }}</td>
+          <td>{{ $comic->title }}</td>
+          <td>{{ $comic->description }}</td>
           <td>
-            <img src="{{ $comic['thumb'] }}" alt="">
+            <img src="{{ $comic->thumb }}" alt="">
           </td>
-          <td>{{ $comic['price'] }}</td>
-          <td>{{ $comic['series'] }}</td>
-          <td>{{ $comic['sale_date'] }}</td>
-          <td>{{ $comic['type'] }}</td>
+          <td>{{ $comic->price }}</td>
+          <td>{{ $comic->series }}</td>
+          <td>{{ $comic->sale_date }}</td>
+          <td>{{ $comic->type }}</td>
 
           <!-- 1 - CRUD / Read / Show -->
           <!-- Creo collegamento alla Rotta Dinamica 'Show', passando il Parametro -->
