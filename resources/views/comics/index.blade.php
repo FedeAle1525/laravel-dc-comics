@@ -42,6 +42,18 @@
           <!-- 3 - CRUD / Update / Edit -->
           <!-- Pulsante che porta alla Pagina di Edit, passando il Parametro -->
           <td><a href="{{ route('comics.edit', $comic) }}" class="btn btn-warning">Modifica</a></td>
+
+          <!-- 4 - CRUD / Destroy -->
+          <!-- Ho bisogno di un Form perchè devo "traformare" il metodo con la direttiva "method" -->
+          <td>
+            <form action=" {{ route('comics.destroy', $comic )}} " method="post">
+              @csrf <!-- Direttiva che genera un Input Nascosto con un Codice associato che riconosce il Form del Sito -->
+              @method('delete') <!-- Direttiva che permette di "trasformare" il metodo 'POST' del Form in un DELETE -->
+
+              <!-- Pulsante che porta alla Pagina di Destroy -->
+              <input type="submit" class="btn btn-danger" value="Elimina">
+            </form>
+          </td>
         </tr>
         @endforeach
 

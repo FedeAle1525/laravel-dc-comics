@@ -105,6 +105,6 @@ class ComicController extends Controller
         $comic->delete();
 
         // Al posto di ritornare una Vista, si fa un REDIRECT sulla Rotta 'index'
-        to_route('comics.index');
+        return to_route('comics.index');
     }
 }
