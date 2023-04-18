@@ -75,6 +75,7 @@ class ComicController extends Controller
         return view('comics.edit', compact('comic'));
     }
 
+    // 3 - CRUD ---> Update
     public function update(Request $request, Comic $comic)
     {
 
@@ -94,5 +95,16 @@ class ComicController extends Controller
 
         // Al posto di ritornare una Vista, si fa un REDIRECT sulla Rotta 'show', ricordandoci che è una Rotta Parametrica quindi bisogna passare l'id riferito alla nuova entità
         return to_route('comics.show', $comic);
+    }
+
+    // 4 - CRUD - Destroy
+    public function destroy(Comic $comic)
+    {
+
+        // Utilizzo metodo "delete" dell'istanza per inviare una richiesta di eliminazione al DB
+        $comic->delete();
+
+        // Al posto di ritornare una Vista, si fa un REDIRECT sulla Rotta 'index'
+        to_route('comics.index');
     }
 }
