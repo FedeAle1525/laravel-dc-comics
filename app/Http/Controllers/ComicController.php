@@ -73,17 +73,18 @@ class ComicController extends Controller
         ]);
 
         // Creo una nuova Istanza di Comic con i valori delle proprieta' uguali ai dati del Form contenuti in $request
-        $newComic = new Comic();
+        // $newComic = new Comic();
+        // $newComic->title = $data['title'];
+        // $newComic->description = $data['description'];
+        // $newComic->thumb = $data['thumb'];
+        // $newComic->price = $data['price'];
+        // $newComic->series = $data['series'];
+        // $newComic->sale_date = $data['sale_date'];
+        // $newComic->type = $data['type'];
+        // $newComic->save();
 
-        $newComic->title = $data['title'];
-        $newComic->description = $data['description'];
-        $newComic->thumb = $data['thumb'];
-        $newComic->price = $data['price'];
-        $newComic->series = $data['series'];
-        $newComic->sale_date = $data['sale_date'];
-        $newComic->type = $data['type'];
-
-        $newComic->save();
+        // Assegnazione di Massa: creazione d'instanza con associazione di Proprietà a Valori Tabella ($request) e salvataggio nel DB
+        $newComic = Comic::create($data);
 
         // Al posto di ritornare una Vista, si fa un REDIRECT sulla Rotta 'show', ricordandoci che è una Rotta Parametrica quindi bisogna passare l'id riferito alla nuova entità
         return redirect()->route('comics.show', $newComic->id);
@@ -124,15 +125,21 @@ class ComicController extends Controller
         ]);
 
         // Aggiorno i dati presenti nell'istanza $book (da sovrascrivere nel DB) con quelli presenti in $request (Form Precompilato)
-        $comic->title = $data['title'];
-        $comic->description = $data['description'];
-        $comic->thumb = $data['thumb'];
-        $comic->price = $data['price'];
-        $comic->series = $data['series'];
-        $comic->sale_date = $data['sale_date'];
-        $comic->type = $data['type'];
+        // $comic->title = $data['title'];
+        // $comic->description = $data['description'];
+        // $comic->thumb = $data['thumb'];
+        // $comic->price = $data['price'];
+        // $comic->series = $data['series'];
+        // $comic->sale_date = $data['sale_date'];
+        // $comic->type = $data['type'];
+        // $comic->save();
 
-        $comic->save();
+        // Assegnazione di Massa: associazione di Proprietà a Valori Tabella ($request) e salvataggio nel DB (un passaggio)
+        $comic->update($data);
+
+        // Assegnazione di Massa: associazione di Proprietà a Valori Tabella ($request) e salvataggio nel DB (due passaggio)
+        // $comic->fill($data);
+        // $comic->save();
 
         // Al posto di ritornare una Vista, si fa un REDIRECT sulla Rotta 'show', ricordandoci che è una Rotta Parametrica quindi bisogna passare l'id riferito alla nuova entità
         return to_route('comics.show', $comic);
