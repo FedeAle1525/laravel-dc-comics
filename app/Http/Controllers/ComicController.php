@@ -101,7 +101,27 @@ class ComicController extends Controller
     {
 
         // Tramite il metodo "all" di $request, recupero tutti gli input (coppia name/value) del Form Precompilato in un Array Asociativo
-        $data = $request->all();
+        // $data = $request->all();
+
+        // Controlli per la Validazione dei Dati prima della creazione di Istanza
+        // Array Associativo con CHIAVE = 'proprietà' e VALORE = 'Regola di Validazione'
+        $data = $request->validate([
+            'title' => 'required|string|max:100',
+            'description' => 'required|string',
+            'thumb' => 'nullable|url',
+            'price' => 'required|decimal:2|min:0',
+            'series' => 'required|string|max:100',
+            'sale_date' => 'nullable|date',
+
+            // Attraverso il metodo 'in' della Classe 'Rule', controllo che il tipo coincida con dei valori prestabiliti
+            // Di solito collegata a un Input di tipo 'Select'
+            'type' => [
+                'required',
+                'string',
+                'max:50',
+                Rule::in(['comic-book', 'graphic-novel'])
+            ]
+        ]);
 
         // Aggiorno i dati presenti nell'istanza $book (da sovrascrivere nel DB) con quelli presenti in $request (Form Precompilato)
         $comic->title = $data['title'];
