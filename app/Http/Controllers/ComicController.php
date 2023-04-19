@@ -68,7 +68,7 @@ class ComicController extends Controller
                 'required',
                 'string',
                 'max:50',
-                Rule::in(['comic-book', 'graphic-novel'])
+                Rule::in(['comic book', 'graphic novel'])
             ]
         ]);
 
@@ -119,7 +119,7 @@ class ComicController extends Controller
                 'required',
                 'string',
                 'max:50',
-                Rule::in(['comic-book', 'graphic-novel'])
+                Rule::in(['comic book', 'graphic novel'])
             ]
         ]);
 

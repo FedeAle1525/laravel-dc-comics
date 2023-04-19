@@ -21,42 +21,49 @@
       <!-- I Value degli Input devono coincidono con il contenuto delle Colonne della Tabella, recuperati dal DB -->
       <div class="mb-3">
         <label class="form-label">Titolo</label>
-        <input type="text" class="form-control" name="title" value="{{ $comic->title }}">
+        <input type="text" class="form-control" name="title" value="{{ old('title', $comic->title) }}">
       </div>
 
       <div class="mb-3">
         <label class="form-label d-block">Descrizione</label>
+
+        <!-- In caso di errore ripopolo l'input con il vecchio valore inviato (old), per evitare il più possibile il medesimo errore -->
         <textarea name="description" cols="100" rows="10">
-        {{ $comic->description }}
+        {{ old('description', $comic->description)  }}
         </textarea>
       </div>
 
       <div class="mb-3">
         <label class="form-label">Link Immagine</label>
-        <input type="text" class="form-control" name="thumb" value="{{ $comic->thumb }}">
+        <input type="text" class="form-control" name="thumb" value="{{ old('thumb', $comic->thumb) }}">
       </div>
 
       <div class="mb-3">
         <label class="form-label">Serie</label>
-        <input type="text" class="form-control" name="series" value="{{ $comic->series }}">
+        <input type="text" class="form-control" name="series" value="{{ old('series', $comic->series) }}">
       </div>
 
       <div class="mb-3">
         <label class="form-label">Tipologia</label>
-        <input type="text" class="form-control" name="type" value="{{ $comic->type }}">
+        <select type="text" class="form-control" name="type">
+          <option>Seleziona Tipologia</option>
+          <!-- Gestione Valori 'Old' per <Select> -->
+          <option @selected( old('type', $comic->type) == 'comic book' ) value="comic book">Comic Book</option>
+          <option @selected( old('type', $comic->type) == 'graphic novel' ) value="graphic novel">Graphic Novel</option>
+        </select>
       </div>
 
       <div class="mb-3">
         <label class="form-label">Prezzo</label>
         <div class="input-group">
-          <input type="text" class="form-control" name="price" value="{{ $comic->price }}">
+          <input type="text" class="form-control" name="price" value="{{ old('price', $comic->price) }}">
           <span class="input-group-text">€</span>
         </div>
       </div>
 
       <div class="mb-3">
         <label class="form-label">Data D'Uscita</label>
-        <input type="date" class="form-control" name="sale_date" value="{{ $comic->sale_date }}">
+        <input type="date" class="form-control" name="sale_date" value="{{ old('sale_date', $comic->sale_date) }}">
       </div>
 
       <div class="mb-3">
@@ -64,6 +71,18 @@
       </div>
 
     </form>
+
+    <!-- Stampa degli Errori generati dalla Validazione della Richiesta (validi per UNA SESSIONE) -->
+    @if ($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+    @endif
+
   </div>
 </main>
 

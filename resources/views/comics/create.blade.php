@@ -47,8 +47,8 @@
         <select type="text" class="form-control" name="type">
           <option>Seleziona Tipologia</option>
           <!-- Gestione Valori 'Old' per <Select> -->
-          <option @selected( old('type')=='comic-book' ) value="comic-book">Comic Book</option>
-          <option @selected( old('type')=='graphic-novel' ) value="graphic-novel">Graphic Novel</option>
+          <option @selected( old('type')=='comic book' ) value="comic book">Comic Book</option>
+          <option @selected( old('type')=='graphic novel' ) value="graphic novel">Graphic Novel</option>
         </select>
       </div>
 
